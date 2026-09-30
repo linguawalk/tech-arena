@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "level": 1,
+  "course": {
+    "id": "c1",
+    "title": "전기전자",
+    "description": "회로도 읽기, 전기 설비와 안전, 전력과 송배전, 전원·트랜지스터·센서 회로, 논리 회로, 통신 기초"
+  },
+  "totals": {
+    "chapters": 1,
+    "lessons": 4,
+    "lesson_questions": 64,
+    "review_questions": 10,
+    "questions": 74
+  },
+  "chapters": [
+    {
+      "no": 1,
+      "id": "c1-ch01",
+      "title": "회로도 읽기와 부품",
+      "dir": "ch01",
+      "lessons": 4,
+      "lesson_questions": 64,
+      "review_questions": 10
+    }
+  ]
+}
