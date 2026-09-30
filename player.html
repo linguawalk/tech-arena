@@ -370,7 +370,7 @@ function circuitFig(cfg){
   const W = (x1 - x0) * U + 2 * pad, H = (y1 - y0) * U + 2 * pad;
   const X = x => pad + (x - x0) * U, Y = y => pad + (y - y0) * U;
   const svg = el("svg", {viewBox:`0 0 ${W} ${H}`, width:W, role:"img", "aria-label": cfg.alt || "회로도"});
-  const S = {stroke:ink, "stroke-width":2.2, fill:"none", "stroke-linecap":"round"};
+  const S = {stroke:ink, "stroke-width":2.2, fill:"none", "stroke-linecap":"round"}, ext = [];
   const line = (a, b, g, extra) => el("line", Object.assign({x1:a[0], y1:a[1], x2:b[0], y2:b[1]}, S, extra || {}), g);
   E.forEach(e => {
     const A = [X(e.a[0]), Y(e.a[1])], B = e.b ? [X(e.b[0]), Y(e.b[1])] : A;
@@ -416,12 +416,23 @@ function circuitFig(cfg){
       line([-h,0],[-5,0],g); line([5,0],[h,0],g); line([-5,-14],[-5,14],g); line([5,-14],[5,14],g);
     }
     if (e.label){
-      const nx = (B[1]-A[1]) / (L || 1), ny = -(B[0]-A[0]) / (L || 1), sg = e.side === "b" ? -1 : 1, off = 30;
-      txt(svg, (A[0]+B[0])/2 + sg * nx * off, (A[1]+B[1])/2 + sg * ny * off + 5, e.label, {fill:"#1D3FA8", "font-size":14, "font-weight":500});
+      const nx = (B[1]-A[1]) / (L || 1), ny = -(B[0]-A[0]) / (L || 1), sg = e.side === "b" ? -1 : 1;
+      const mx = (A[0]+B[0])/2, my = (A[1]+B[1])/2, lw = [...e.label].reduce((s, ch) => s + (ch.charCodeAt(0) > 255 ? 14 : 8), 0);
+      if (Math.abs(nx) > 0.5){          /* 세로 부품: 라벨을 부품 바깥쪽으로 붙여 쓴다 */
+        const dir = sg * Math.sign(nx), lx = mx + dir * (e.t === "led" ? 40 : 24);
+        txt(svg, lx, my + 5, e.label, {fill:"#1D3FA8", "font-size":14, "font-weight":500, "text-anchor": dir > 0 ? "start" : "end"});
+        ext.push(dir > 0 ? lx + lw : lx - lw);
+      } else {
+        const lx = mx, ly = my + sg * ny * 30 + 5;
+        txt(svg, lx, ly, e.label, {fill:"#1D3FA8", "font-size":14, "font-weight":500});
+        ext.push(lx - lw / 2, lx + lw / 2);
+      }
     }
   });
   (cfg.dots || []).forEach(q => el("circle", {cx:X(q[0]), cy:Y(q[1]), r:4.4, fill:ink}, svg));
   (cfg.texts || []).forEach(q => txt(svg, X(q[0]), Y(q[1]) + 5, q[2], {fill:"#4A5670", "font-size":14}));
+  const vx0 = Math.min(0, ...ext.map(v => v - 8)), vx1 = Math.max(W, ...ext.map(v => v + 8));
+  svg.setAttribute("viewBox", `${vx0} 0 ${vx1 - vx0} ${H}`); svg.setAttribute("width", vx1 - vx0);
   return svg;
 }
 
