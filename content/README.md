@@ -20,7 +20,7 @@ math-arena·sci-arena와 같은 스키마·플레이어를 쓴다. 차이점만 
 
 ## 레벨2·3 가이드 (guide)
 - 트랙 목록: content/guides.json (10개 분야 + 융합, 과목별 level·available). 다른 트랙 과목을 공유하는 항목은 "t"(원래 트랙)를 가진다
-  - 공유: 전자 → 전기의 회로이론, 토목·건축 → 기계의 정역학(토목은 재료역학도)
+  - 공유: 전자 → 전기의 회로이론·전기자기학, 토목·건축 → 기계의 정역학(토목은 재료역학도)
 - 과목: content/level{2|3}/{트랙}/{과목}/subject.json
   - overview(분야 개요 3문단), tagline, level_note(수준과 목차 검증 기준)
   - prereq: text, links(레벨1 챕터·sci-arena·math-arena), questions(선수 점검, id p1~)
@@ -31,3 +31,16 @@ math-arena·sci-arena와 같은 스키마·플레이어를 쓴다. 차이점만 
 - 페이지: guide.html (?lv=&t=&s=&u=) — tools/make_guide.py가 player.html 공용 코드로 생성
 - 저장: localStorage "tech-arena:guide" = {단원 id: {checks: [체크한 항목 번호], sc: {문항 id: 정답 여부}}}
 - 목차 검증: 레벨2는 산업기사, 레벨3은 기사 필기 과목 구성(누락 방지용). 추천 자료는 무료 공개 자료 우선, 유료 교재는 URL 없이 장 번호만
+
+## 바뀔 수 있는 내용의 관리 (review, standards, audit)
+- 법령·기준·시험 제도·시장 수치처럼 바뀔 수 있는 내용이 있는 과목·단원에는 review를 붙인다
+  - review: {basis(근거), checked(확인 YYYY-MM), next(다음 점검 YYYY-MM), watch(무엇이 바뀌면 고칠지), standards(쓰는 규정값 키)}
+  - 화면에는 "기준 안내" 상자(근거와 확인 시점)가, 로드맵 카드에는 "기준 확인 필요"가 표시된다
+  - 원리만 다루는 단원에는 붙이지 않는다
+  - 주의: 레벨1 챕터의 "review"는 복습 레슨이다. 점검 정보는 가이드(type guide_unit·guide_subject)에서만 쓴다
+- 규정값: content/standards.json {items: {키: {value, unit, text, basis, clause, checked, next}}}
+  - 가이드 스크립트는 std(키)로 값을 불러 문항·해설·체크리스트에 쓴다
+  - 기준이 바뀌면 standards.json 값을 고치고 해당 tools/guide_*.py를 다시 실행하면 함께 바뀐다
+- 점검 보고서: python3 tools/audit.py [--links] [--ahead 개월] [--out 파일] [사이트 경로]
+  - 점검 기한이 지났거나 곧 돌아오는 단원·규정값, (--links) 열리지 않거나 옮겨진 외부 링크를 보고한다
+  - math·sci-arena 저장소에도 그대로 쓸 수 있다

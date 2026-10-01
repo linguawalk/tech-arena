@@ -46,10 +46,9 @@
    "part": "Polyphase AC Circuits 장"
   },
   {
-   "title": "레벨1 · 변압기와 송배전",
-   "href": "browse.html?c=c1#ch05",
    "kind": "web",
    "provider": "tech-arena 레벨1",
+   "title": "챕터 5 변압기와 송배전",
    "url": "browse.html?c=c1#ch05",
    "part": "3상 송배전 복습"
   }

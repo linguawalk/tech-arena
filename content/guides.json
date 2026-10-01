@@ -12,7 +12,7 @@
   {
    "id": "electrical",
    "title": "전기",
-   "note": "회로이론에서 시작해 전기기기·전력·설비로, 레벨3에서 전력계통·제어·전력전자로 나아갑니다.",
+   "note": "회로이론과 전기자기학에서 시작해 전기기기·전력·설비로, 레벨3에서 전력계통·제어·전력전자로 나아갑니다.",
    "subjects": [
     {
      "level": 2,
@@ -22,21 +22,27 @@
     },
     {
      "level": 2,
+     "id": "electromagnetics",
+     "title": "전기자기학",
+     "available": true
+    },
+    {
+     "level": 2,
      "id": "electric-machines",
      "title": "전기기기",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
      "id": "power-basics",
      "title": "전력공학 기초",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
      "id": "electrical-installation",
      "title": "전기설비",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
@@ -84,9 +90,10 @@
     },
     {
      "level": 2,
-     "id": "em-basics",
-     "title": "전자기학 기초",
-     "available": false
+     "id": "electromagnetics",
+     "title": "전기자기학",
+     "available": true,
+     "t": "electrical"
     },
     {
      "level": 3,

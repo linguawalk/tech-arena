@@ -11,11 +11,11 @@ import json, os
 CONTENT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "content")
 
 TRACKS = [
-    {"id": "electrical", "title": "전기", "note": "회로이론에서 시작해 전기기기·전력·설비로, 레벨3에서 전력계통·제어·전력전자로 나아갑니다.",
-     "l2": [["circuit-theory", "회로이론"], ["electric-machines", "전기기기"], ["power-basics", "전력공학 기초"], ["electrical-installation", "전기설비"]],
+    {"id": "electrical", "title": "전기", "note": "회로이론과 전기자기학에서 시작해 전기기기·전력·설비로, 레벨3에서 전력계통·제어·전력전자로 나아갑니다.",
+     "l2": [["circuit-theory", "회로이론"], ["electromagnetics", "전기자기학"], ["electric-machines", "전기기기"], ["power-basics", "전력공학 기초"], ["electrical-installation", "전기설비"]],
      "l3": [["power-systems", "전력계통"], ["control", "제어공학"], ["power-electronics", "전력전자"]]},
     {"id": "electronics", "title": "전자", "note": "반도체 소자로 만드는 아날로그·디지털 회로. 회로이론(전기 트랙)을 먼저 공부하세요.",
-     "l2": [["circuit-theory", "회로이론", "electrical"], ["electronic-circuits", "전자회로"], ["digital-circuits", "디지털회로"], ["em-basics", "전자기학 기초"]],
+     "l2": [["circuit-theory", "회로이론", "electrical"], ["electronic-circuits", "전자회로"], ["digital-circuits", "디지털회로"], ["electromagnetics", "전기자기학", "electrical"]],
      "l3": [["integrated-circuits", "집적회로"], ["embedded", "임베디드 시스템"]]},
     {"id": "ict", "title": "정보통신", "note": "신호를 멀리 보내는 기술. 레벨1 전기전자의 통신 단원과 컴퓨터의 네트워크 단원이 만나는 곳입니다.",
      "l2": [["comm-theory", "통신이론 기초"], ["wireless", "무선통신"], ["optical-comm", "광통신"], ["comm-networks", "통신망"]],
@@ -62,8 +62,43 @@ OPENSTAX = lambda title, slug: {"kind": "book", "provider": "OpenStax (무료 �
 KHAN = lambda title, path: {"kind": "video", "provider": "Khan Academy", "title": title,
                             "url": f"https://www.khanacademy.org/science/{path}", "lang": "영어(일부 한국어)"}
 L1 = lambda c, n, title: {"title": f"레벨1 · {title}", "href": f"browse.html?c={c}#ch{n:02d}"}
+L1R = lambda c, n, title: {"kind": "web", "provider": "tech-arena 레벨1", "title": f"챕터 {n} {title}", "url": f"browse.html?c={c}#ch{n:02d}"}
 SCI = lambda c, title: {"title": f"sci-arena 레벨1 · {title}", "href": f"https://sci-arena.org/browse.html?c={c}"}
 MATHG = lambda lv, t, s, title: {"title": f"math-arena 레벨{lv} · {title}", "href": f"https://math-arena.org/guide.html?lv={lv}&t={t}&s={s}"}
+
+
+# ---------------------------------------------------------------- 점검 정보(review)와 규정값(standards)
+# 법령·기준·시험 제도·시장 수치처럼 바뀔 수 있는 내용이 있는 단원(또는 과목)에 review를 붙인다.
+#   basis: 근거(예: "한국전기설비규정(KEC)"), checked: 마지막 확인 "YYYY-MM", next: 다음 점검 "YYYY-MM",
+#   watch: 무엇이 바뀌면 고쳐야 하는지, standards: 이 단원이 쓰는 규정값 키 목록
+# 규정값은 content/standards.json 한곳에 두고 std(키)로 불러 문항·해설에 쓴다. 값을 고치고 다시 빌드하면 함께 바뀐다.
+STANDARDS_PATH = os.path.join(CONTENT, "standards.json")
+
+
+def _load_std():
+    try: return json.load(open(STANDARDS_PATH, encoding="utf-8"))["items"]
+    except FileNotFoundError: return {}
+
+
+def std(key):
+    """규정값 한 항목: value, unit, text, basis, clause, checked, next"""
+    items = _load_std()
+    assert key in items, f"standards.json에 {key} 없음"
+    return items[key]
+
+
+def review(basis, checked, next_, watch, standards=()):
+    return {"basis": basis, "checked": checked, "next": next_, "watch": watch, "standards": list(standards)}
+
+
+def _check_review(r, where):
+    import re
+    for k in ("basis", "checked", "next", "watch"):
+        assert r.get(k), f"{where}: review.{k}"
+    assert re.fullmatch(r"\d{4}-\d{2}", r["checked"]) and re.fullmatch(r"\d{4}-\d{2}", r["next"]), f"{where}: review 날짜 형식 YYYY-MM"
+    assert r["next"] > r["checked"], f"{where}: 다음 점검은 확인일 뒤"
+    items = _load_std()
+    for k in r.get("standards", []): assert k in items, f"{where}: 규정값 {k} 없음"
 
 
 def R(base, part):
@@ -95,9 +130,11 @@ def written(i, prompt, groups, need, model):
             "model_answer": model}
 
 
-def unit(no, title, hours, after, objectives, checklist, advice, resources, selfcheck):
-    return {"no": no, "title": title, "hours": hours, "after": after, "objectives": objectives,
-            "checklist": checklist, "advice": advice, "resources": resources, "selfcheck": selfcheck}
+def unit(no, title, hours, after, objectives, checklist, advice, resources, selfcheck, review=None):
+    u = {"no": no, "title": title, "hours": hours, "after": after, "objectives": objectives,
+         "checklist": checklist, "advice": advice, "resources": resources, "selfcheck": selfcheck}
+    if review: u["review"] = review
+    return u
 
 
 def check(subject, units):
@@ -111,6 +148,7 @@ def check(subject, units):
         assert len(u["advice"]) >= 1 and all(len(a) >= 80 for a in u["advice"]), f"{where}: 조언 분량"
         assert u["resources"], f"{where}: 자료"
         assert 3 <= len(u["selfcheck"]) <= 6, f"{where}: 자가점검 3~6문항"
+        if u.get("review"): _check_review(u["review"], where)
         for q in u["selfcheck"]:
             if q["qtype"] == "written":
                 m = q["model_answer"]
@@ -121,6 +159,7 @@ def check(subject, units):
             if q["qtype"] == "fill_blank":
                 n = q["prompt"].count("{{")
                 assert n == len(q["blanks"]), f"{where}: 빈칸 수"
+    if subject.get("review"): _check_review(subject["review"], subject["id"])
     p = subject["prereq"]
     assert p["links"] and len(p["questions"]) >= 3, f"{subject['id']}: 선수 점검"
 
@@ -133,8 +172,8 @@ def write_subject(subject, units):
     subj = dict(subject, schema_version="1.0", type="guide_subject")
     for k, q in enumerate(subj["prereq"]["questions"]):
         q["id"] = f"p{k + 1}"; q["stage"] = "prereq"
-    subj["units"] = [{"no": u["no"], "title": u["title"], "hours": u["hours"], "after": u["after"],
-                      "file": f"u{u['no']:02d}.json"} for u in units]
+    subj["units"] = [dict({"no": u["no"], "title": u["title"], "hours": u["hours"], "after": u["after"],
+                      "file": f"u{u['no']:02d}.json"}, **({"review": True} if u.get("review") else {})) for u in units]
     subj["total_hours"] = sum(u["hours"] for u in units)
     json.dump(subj, open(os.path.join(base, "subject.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     for u in units:
