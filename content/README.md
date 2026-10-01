@@ -17,3 +17,17 @@ math-arena·sci-arena와 같은 스키마·플레이어를 쓴다. 차이점만 
 ## 빌드
 - python3 tools/build_c1_ch01.py content && python3 tools/make_course_index.py content
 - 단계 A 엄격 검사: 레슨당 문항 15~17개, 화면 20~24개, 예제 3개, 채점형 풀이 20자 이상, 적용·복습 문항 힌트 필수
+
+## 레벨2·3 가이드 (guide)
+- 트랙 목록: content/guides.json (10개 분야 + 융합, 과목별 level·available). 다른 트랙 과목을 공유하는 항목은 "t"(원래 트랙)를 가진다
+  - 공유: 전자 → 전기의 회로이론, 토목·건축 → 기계의 정역학(토목은 재료역학도)
+- 과목: content/level{2|3}/{트랙}/{과목}/subject.json
+  - overview(분야 개요 3문단), tagline, level_note(수준과 목차 검증 기준)
+  - prereq: text, links(레벨1 챕터·sci-arena·math-arena), questions(선수 점검, id p1~)
+  - units: no, title, hours, after(먼저 볼 단원), file / total_hours / next(다음 과목)
+- 단원: uNN.json (math-arena·sci-arena 공통 단원 템플릿)
+  - objectives, checklist, advice(1~2문단, 문단당 80자 이상), resources(kind lecture|video|book|web, provider, title, part, url, lang), hours, selfcheck(레벨1 문항 스키마, stage = selfcheck)
+- 제작: tools/guide_{과목}.py (공용 도구 tools/gk.py — 트랙 구조, 저장 전 검사). 수치 정답은 각 스크립트의 verify()에서 다시 계산
+- 페이지: guide.html (?lv=&t=&s=&u=) — tools/make_guide.py가 player.html 공용 코드로 생성
+- 저장: localStorage "tech-arena:guide" = {단원 id: {checks: [체크한 항목 번호], sc: {문항 id: 정답 여부}}}
+- 목차 검증: 레벨2는 산업기사, 레벨3은 기사 필기 과목 구성(누락 방지용). 추천 자료는 무료 공개 자료 우선, 유료 교재는 URL 없이 장 번호만
