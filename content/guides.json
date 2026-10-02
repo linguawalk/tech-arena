@@ -48,19 +48,19 @@
      "level": 3,
      "id": "power-systems",
      "title": "전력계통",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "control",
      "title": "제어공학",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "power-electronics",
      "title": "전력전자",
-     "available": false
+     "available": true
     }
    ]
   },
