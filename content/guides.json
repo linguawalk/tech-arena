@@ -80,13 +80,13 @@
      "level": 2,
      "id": "electronic-circuits",
      "title": "전자회로",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
      "id": "digital-circuits",
      "title": "디지털회로",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
@@ -99,13 +99,13 @@
      "level": 3,
      "id": "integrated-circuits",
      "title": "집적회로",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "embedded",
      "title": "임베디드 시스템",
-     "available": false
+     "available": true
     }
    ]
   },
