@@ -118,49 +118,49 @@
      "level": 2,
      "id": "comm-theory",
      "title": "통신이론 기초",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
      "id": "wireless",
      "title": "무선통신",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
      "id": "optical-comm",
      "title": "광통신",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
      "id": "comm-networks",
      "title": "통신망",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "digital-comm",
      "title": "디지털통신",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "mobile-comm",
      "title": "이동통신",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "satellite-comm",
      "title": "위성통신",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "network-design",
      "title": "통신망 설계",
-     "available": false
+     "available": true
     }
    ]
   },
