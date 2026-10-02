@@ -685,7 +685,9 @@ async function tracksView(){
     <p class="lede">레벨2(응용)와 레벨3(심화)은 10개 공학 분야와 융합 과정의 독학 가이드로 운영합니다. 다른 분야와 함께 쓰는 과목은 한 번만 공부하면 됩니다. 과목마다 무엇을, 어떤 순서로, 어디까지 공부할지와 검증된 공개 강의·교재, 자가점검 문항을 제공합니다.</p>
     <div class="badges"><span class="badge">레벨2 · ${esc(g.levels["2"])}</span><span class="badge soft">레벨3 · ${esc(g.levels["3"])}</span></div>
     <div class="tracks">${g.tracks.map(t => `<section class="trk"><h3>${esc(t.title)}</h3><p>${esc(t.note)}</p><ul>
-      ${t.subjects.map(s => `<li><span class="lv l${s.level}">L${s.level}</span>${s.available
+      ${t.subjects.map(s => `<li><span class="lv l${s.level}">L${s.level}</span>${s.url
+        ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a><span class="soon">${esc(s.site)}</span>`
+        : s.available
         ? `<a href="guide.html?lv=${s.level}&t=${s.t || t.id}&s=${s.id}">${esc(s.title)}</a>${s.t ? `<span class="soon">공유</span>` : ""}`
         : `<span>${esc(s.title)}</span><span class="soon">${s.t ? "공유 · " : ""}준비 중</span>`}</li>`).join("")}</ul></section>`).join("")}</div>
     <p class="note" style="margin-top:22px">목차 검증 기준 — 레벨2: ${esc(g.validation["2"])}. 레벨3: ${esc(g.validation["3"])}.</p>`;

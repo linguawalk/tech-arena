@@ -20,9 +20,12 @@ TRACKS = [
     {"id": "ict", "title": "정보통신", "note": "신호를 멀리 보내는 기술. 레벨1 전기전자의 통신 단원과 컴퓨터의 네트워크 단원이 만나는 곳입니다.",
      "l2": [["comm-theory", "통신이론 기초"], ["wireless", "무선통신"], ["optical-comm", "광통신"], ["comm-networks", "통신망"]],
      "l3": [["digital-comm", "디지털통신"], ["mobile-comm", "이동통신"], ["satellite-comm", "위성통신"], ["network-design", "통신망 설계"]]},
-    {"id": "computer", "title": "컴퓨터", "note": "하드웨어·운영체제·네트워크의 원리. 프로그래밍 실습은 code-arena에서 다룹니다.",
-     "l2": [["computer-architecture", "컴퓨터 구조"], ["operating-systems", "운영체제"], ["networks", "컴퓨터 네트워크"]],
-     "l3": [["system-programming", "시스템 프로그래밍"], ["distributed-systems", "분산시스템"], ["security", "정보보안"]]},
+    {"id": "computer", "title": "컴퓨터", "note": "하드웨어·운영체제·네트워크·데이터베이스·소프트웨어의 원리와 설계. 코드 작성과 자료구조·알고리즘 실습은 code-arena가 맡습니다.",
+     "l2": [["computer-architecture", "컴퓨터 구조"], ["operating-systems", "운영체제"], ["networks", "컴퓨터 네트워크"],
+            ["databases", "데이터베이스 시스템"], ["software-engineering", "소프트웨어공학"], ["digital-circuits", "디지털회로", "electronics"],
+            ["dsa", "자료구조·알고리즘", None, "https://code-arena.org/browse.html?type=module&key=dsa", "code-arena"]],
+     "l3": [["system-programming", "시스템 프로그래밍"], ["distributed-systems", "분산시스템·클라우드"], ["security", "정보보안"],
+            ["compilers", "컴파일러와 언어 원리"]]},
     {"id": "mechanical", "title": "기계", "note": "힘과 변형, 열과 에너지, 기계 설계. 정역학·재료역학은 토목·건축과 공유합니다.",
      "l2": [["statics", "정역학"], ["mechanics-of-materials", "재료역학"], ["thermodynamics", "열역학 기초"], ["machine-elements", "기계요소"], ["drafting-cad", "제도·CAD"]],
      "l3": [["fluid-mechanics", "유체역학"], ["heat-transfer", "열전달"], ["dynamics-vibration", "동역학·진동"], ["machine-design", "기계설계"]]},
@@ -199,7 +202,10 @@ def write_tracks():
         for lv, key in ((2, "l2"), (3, "l3")):
             for e in t[key]:
                 sid, title = e[0], e[1]
-                home = e[2] if len(e) > 2 else t["id"]
+                if len(e) > 3 and e[3]:  # 다른 사이트의 과목으로 연결
+                    subs.append({"level": lv, "id": sid, "title": title, "available": True, "url": e[3], "site": e[4]})
+                    continue
+                home = e[2] if len(e) > 2 and e[2] else t["id"]
                 ok = os.path.exists(os.path.join(CONTENT, f"level{lv}", home, sid, "subject.json"))
                 d = {"level": lv, "id": sid, "title": title, "available": ok}
                 if home != t["id"]: d["t"] = home

@@ -167,43 +167,76 @@
   {
    "id": "computer",
    "title": "컴퓨터",
-   "note": "하드웨어·운영체제·네트워크의 원리. 프로그래밍 실습은 code-arena에서 다룹니다.",
+   "note": "하드웨어·운영체제·네트워크·데이터베이스·소프트웨어의 원리와 설계. 코드 작성과 자료구조·알고리즘 실습은 code-arena가 맡습니다.",
    "subjects": [
     {
      "level": 2,
      "id": "computer-architecture",
      "title": "컴퓨터 구조",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
      "id": "operating-systems",
      "title": "운영체제",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
      "id": "networks",
      "title": "컴퓨터 네트워크",
-     "available": false
+     "available": true
+    },
+    {
+     "level": 2,
+     "id": "databases",
+     "title": "데이터베이스 시스템",
+     "available": true
+    },
+    {
+     "level": 2,
+     "id": "software-engineering",
+     "title": "소프트웨어공학",
+     "available": true
+    },
+    {
+     "level": 2,
+     "id": "digital-circuits",
+     "title": "디지털회로",
+     "available": true,
+     "t": "electronics"
+    },
+    {
+     "level": 2,
+     "id": "dsa",
+     "title": "자료구조·알고리즘",
+     "available": true,
+     "url": "https://code-arena.org/browse.html?type=module&key=dsa",
+     "site": "code-arena"
     },
     {
      "level": 3,
      "id": "system-programming",
      "title": "시스템 프로그래밍",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "distributed-systems",
-     "title": "분산시스템",
-     "available": false
+     "title": "분산시스템·클라우드",
+     "available": true
     },
     {
      "level": 3,
      "id": "security",
      "title": "정보보안",
-     "available": false
+     "available": true
+    },
+    {
+     "level": 3,
+     "id": "compilers",
+     "title": "컴파일러와 언어 원리",
+     "available": true
     }
    ]
   },
