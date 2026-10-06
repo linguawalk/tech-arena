@@ -558,25 +558,25 @@
      "level": 3,
      "id": "semiconductor",
      "title": "반도체 소자·공정",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "ai-chip",
      "title": "AI 반도체",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "display",
      "title": "디스플레이",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "quantum-tech",
      "title": "양자기술 입문",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
@@ -588,25 +588,25 @@
      "level": 3,
      "id": "hydrogen",
      "title": "수소에너지",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "nuclear",
      "title": "차세대 원자력",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "renewable-grid",
      "title": "신재생·스마트그리드",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "carbon-neutral",
      "title": "탄소중립 공학",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
@@ -618,19 +618,19 @@
      "level": 3,
      "id": "drone-uam",
      "title": "드론·UAM",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "aerospace",
      "title": "우주항공",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "smart-ocean",
      "title": "스마트 해양·조선",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
@@ -642,13 +642,13 @@
      "level": 3,
      "id": "next-comm",
      "title": "차세대 통신",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "cybersecurity",
      "title": "사이버보안 공학",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
@@ -660,31 +660,31 @@
      "level": 3,
      "id": "smart-factory",
      "title": "스마트팩토리·디지털트윈",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "additive-mfg",
      "title": "적층제조(3D프린팅)",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "bioprocess",
      "title": "바이오공정·합성생물학",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "biomedical",
      "title": "의공학·웨어러블",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "smart-city",
      "title": "스마트시티·스마트건설",
-     "available": false
+     "available": true
     }
    ]
   }

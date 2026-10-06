@@ -31,3 +31,25 @@ D2L = {"kind": "book", "provider": "Dive into Deep Learning (무료 공개 교�
 GOODFELLOW = {"kind": "book", "provider": "Goodfellow · Bengio · Courville (무료 공개)", "title": "Deep Learning", "url": "https://www.deeplearningbook.org/", "lang": "영어"}
 GPP = {"kind": "web", "provider": "3GPP", "title": "3GPP 규격과 릴리스 정보", "url": "https://www.3gpp.org/", "lang": "영어"}
 SAE = {"kind": "web", "provider": "SAE International", "title": "J3016 자율주행 단계 정의", "url": "https://www.sae.org/standards/content/j3016_202104/", "lang": "영어"}
+
+
+def U3(no, title, hours, pre, objs, topics, advice, res, qs, rv=None):
+    """레벨3 융합 단원(조언 1문단) 축약 생성기"""
+    if rv:
+        return unit(no, title, hours, pre, objs, topics, [advice], res, qs, review=rv)
+    return unit(no, title, hours, pre, objs, topics, [advice], res, qs)
+
+
+def SUBJ(sid, title, tagline, overview, basis, prereq_text, links, pq, nxt):
+    return {"level": 3, "track": T, "id": sid, "title": title, "tagline": tagline, "overview": overview,
+            "level_note": L3NOTE.format(basis), "prereq": {"text": prereq_text, "links": links, "questions": pq}, "next": nxt}
+
+
+def NX(title, note):
+    return {"title": title, "note": note}
+
+
+def build_all(items):
+    for subj, units, ver in items:
+        ver()
+        write_subject(subj, units)
