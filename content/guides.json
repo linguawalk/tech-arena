@@ -249,55 +249,55 @@
      "level": 2,
      "id": "statics",
      "title": "정역학",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
      "id": "mechanics-of-materials",
      "title": "재료역학",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
      "id": "thermodynamics",
      "title": "열역학 기초",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
      "id": "machine-elements",
      "title": "기계요소",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
      "id": "drafting-cad",
      "title": "제도·CAD",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "fluid-mechanics",
      "title": "유체역학",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "heat-transfer",
      "title": "열전달",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "dynamics-vibration",
      "title": "동역학·진동",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "machine-design",
      "title": "기계설계",
-     "available": false
+     "available": true
     }
    ]
   },
@@ -310,43 +310,43 @@
      "level": 2,
      "id": "stoichiometry",
      "title": "화공양론",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
      "id": "chem-thermo",
      "title": "화공열역학 기초",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
      "id": "unit-operations",
      "title": "단위조작 기초",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "reaction-engineering",
      "title": "반응공학",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "transport",
      "title": "이동현상",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "separation",
      "title": "분리공정",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "process-control",
      "title": "공정제어",
-     "available": false
+     "available": true
     }
    ]
   },
@@ -359,57 +359,57 @@
      "level": 2,
      "id": "statics",
      "title": "정역학",
-     "available": false,
+     "available": true,
      "t": "mechanical"
     },
     {
      "level": 2,
      "id": "mechanics-of-materials",
      "title": "재료역학",
-     "available": false,
+     "available": true,
      "t": "mechanical"
     },
     {
      "level": 2,
      "id": "surveying",
      "title": "측량",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
      "id": "soil-mechanics",
      "title": "토질역학 기초",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
      "id": "hydraulics",
      "title": "수리학 기초",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "structural-analysis",
      "title": "구조해석",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "rc-steel",
      "title": "철근콘크리트·강구조",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "foundation",
      "title": "기초공학",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "hydrology",
      "title": "수문학",
-     "available": false
+     "available": true
     }
    ]
   },
@@ -422,50 +422,50 @@
      "level": 2,
      "id": "statics",
      "title": "정역학",
-     "available": false,
+     "available": true,
      "t": "mechanical"
     },
     {
      "level": 2,
      "id": "arch-planning",
      "title": "건축계획",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
      "id": "arch-structure",
      "title": "건축구조 기초",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
      "id": "construction",
      "title": "시공",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
      "id": "building-services",
      "title": "건축환경·설비",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "structural-design",
      "title": "구조설계",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "urban-design",
      "title": "도시설계",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "green-building",
      "title": "친환경·에너지 건축",
-     "available": false
+     "available": true
     }
    ]
   },
@@ -478,25 +478,25 @@
      "level": 2,
      "id": "materials-intro",
      "title": "재료공학 입문",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "material-properties",
      "title": "재료물성",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "metal-ceramic-polymer",
      "title": "금속·세라믹·고분자",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "materials-analysis",
      "title": "재료분석",
-     "available": false
+     "available": true
     }
    ]
   },
@@ -509,25 +509,25 @@
      "level": 2,
      "id": "ie-intro",
      "title": "산업공학 입문",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "operations-research",
      "title": "경영과학(OR)",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "quality-engineering",
      "title": "품질공학",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
      "id": "ergonomics",
      "title": "인간공학",
-     "available": false
+     "available": true
     }
    ]
   },
@@ -540,19 +540,19 @@
      "level": 2,
      "id": "semiconductor-intro",
      "title": "반도체 입문 (브리지)",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
      "id": "ai-chip-intro",
      "title": "AI 반도체 입문 (브리지)",
-     "available": false
+     "available": true
     },
     {
      "level": 2,
      "id": "next-comm-intro",
      "title": "차세대 통신 입문 (브리지)",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
@@ -582,7 +582,7 @@
      "level": 3,
      "id": "battery",
      "title": "이차전지",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
@@ -612,7 +612,7 @@
      "level": 3,
      "id": "ev-autonomous",
      "title": "전기차·자율주행",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
@@ -636,7 +636,7 @@
      "level": 3,
      "id": "ai-engineering",
      "title": "AI 공학",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
@@ -654,7 +654,7 @@
      "level": 3,
      "id": "robotics",
      "title": "로보틱스·휴머노이드",
-     "available": false
+     "available": true
     },
     {
      "level": 3,
